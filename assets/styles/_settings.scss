@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "inter-bold";
+  src: url(../fonts/Inter-ExtraBold.ttf);
+}
+@font-face {
+  font-family: "merri";
+  src: url(../fonts/Merriweather-Light.ttf);
+}
+
+$font1: inter-bold, sans-serif; /* sans-serif = lettre baton */
+$font2: merri, serif; /* serif = lettre avec une petite patte */
+$black1: rgb(17, 17, 17);
+$white1: rgb(243, 243, 243);
+$grey1: rgb(209, 209, 209);
+$grey2: rgb(233, 233, 233);
+$grey3: rgb(105, 105, 105);
+
+@mixin title {
+    font-family: $font1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Pour ne pas que ça déborde des boites */
+}
+html {
+    scroll-behavior: smooth; /* Permet que le scroll soit plus doux lorsque l'on clique sur un bouton */
+}
+li {
+    list-style: none;
+}
+a,
+a:visited {
+    color: $white1; /* Mettre la couleur blanche au lieu du bleu par défaut */
+}
+body {
+    background: url(../img/bg.jpg) fixed center/cover;
+    text-align: center;
+    font-family: $font2;
+    max-width: 1300px;
+    margin: 0 auto;
+
+    &::before { /* Créer un effet d'apparition d'écran noir */
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        background: $black1;
+        animation: animBefore 1.5s ease forwards; /* ease forwards, pour lui dire rester dans l'état quand il a fini l'animation */
+        animation-delay: 0.15s; /* delai de l'animation */
+
+        @keyframes animBefore {
+            to {
+                opacity: 0;
+            }
+        }
+    }
+}
+.btn {
+    background: none;
+    border: 2px solid $black1;
+    height: 45px;
+    width: 170px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    @include title;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
